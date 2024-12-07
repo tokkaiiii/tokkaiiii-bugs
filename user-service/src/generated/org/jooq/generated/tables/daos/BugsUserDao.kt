@@ -57,6 +57,11 @@ open class BugsUserDao(configuration: Configuration?) : DAOImpl<BugsUserRecord, 
     fun fetchByJUsername(vararg values: String): List<BugsUser> = fetch(JBugsUser.BUGS_USER.USERNAME, *values)
 
     /**
+     * Fetch a unique record that has <code>username = value</code>
+     */
+    fun fetchOneByJUsername(value: String): BugsUser? = fetchOne(JBugsUser.BUGS_USER.USERNAME, value)
+
+    /**
      * Fetch records that have <code>email BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
@@ -82,11 +87,6 @@ open class BugsUserDao(configuration: Configuration?) : DAOImpl<BugsUserRecord, 
      * Fetch records that have <code>password IN (values)</code>
      */
     fun fetchByJPassword(vararg values: String): List<BugsUser> = fetch(JBugsUser.BUGS_USER.PASSWORD, *values)
-
-    /**
-     * Fetch a unique record that has <code>password = value</code>
-     */
-    fun fetchOneByJPassword(value: String): BugsUser? = fetchOne(JBugsUser.BUGS_USER.PASSWORD, value)
 
     /**
      * Fetch records that have <code>created_at BETWEEN lowerInclusive AND
