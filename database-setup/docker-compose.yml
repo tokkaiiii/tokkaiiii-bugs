@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: bugs-postgres-container
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB_NAME}
+    ports:
+      - "15432:5432"
+#    volumes:
+#      - bugs_postgres_data:/var/lib/postgresql/data
+    networks:
+      - postgres_network
+    restart: unless-stopped
+
+#volumes:
+#  bugs_postgres_data: {}
+
+networks:
+  postgres_network:
+    driver: bridge
