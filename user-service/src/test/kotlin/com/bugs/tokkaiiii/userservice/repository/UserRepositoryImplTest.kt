@@ -47,7 +47,7 @@ class UserRepositoryImplTest {
 
     @Test
     @Transactional
-    @DisplayName("유저 단건 조회")
+    @DisplayName("유저 단건 조회 By Id")
     fun 유저_단건_조회(){
         // given
         val user = BugsUser()
@@ -64,6 +64,25 @@ class UserRepositoryImplTest {
         // then
         Assertions.assertThat(findUser).isNotNull
         Assertions.assertThat(findUser.username).isEqualTo("test_username")
+    }
+
+    @Test
+    @Transactional
+    @DisplayName("유저 단건 조회 By Email")
+    fun 유저_단건_조회_By_Email(){
+        // given
+        val user = BugsUser()
+        user.username = "test_username"
+        user.email = "test_email"
+        user.password = "test_password"
+        user.createdAt = LocalDateTime.now()
+        user.updatedAt = LocalDateTime.now()
+        userRepository.saveUser(user)?: throw UserNotFoundException("User Not Found")
+
+        // when
+        val findUser = userRepository.findByEmail(user.email!!)?: throw UserNotFoundException("User Not Found")
+        Assertions.assertThat(findUser.username).isEqualTo("test_username")
+
     }
 
 }

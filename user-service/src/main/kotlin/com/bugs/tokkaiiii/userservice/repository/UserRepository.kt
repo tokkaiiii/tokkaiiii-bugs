@@ -8,4 +8,6 @@ interface UserRepository {
 
     fun findById(id:Long):BugsUser?
 
+    fun findByEmail(email: String): BugsUser?
+
 }
