@@ -6,4 +6,6 @@ interface UserRepository {
 
     fun saveUser(user: BugsUser):Long?
 
+    fun findById(id:Long):BugsUser?
+
 }
