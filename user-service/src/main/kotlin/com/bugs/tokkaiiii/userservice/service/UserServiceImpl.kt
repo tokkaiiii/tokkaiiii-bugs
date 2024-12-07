@@ -15,8 +15,12 @@ class UserServiceImpl(
     private val userRepository: UserRepository
 ) : UserService {
     override fun saveUser(registerRequest: RegisterRequest): Long? {
-        userRepository.findByEmail(registerRequest.email)?: throw DuplicatedUserException("already exist user: ${registerRequest.email}")
-        userRepository.findByUsername(registerRequest.username)?: throw DuplicatedUserException("already exist user: ${registerRequest.username}")
+        userRepository.findByEmail(registerRequest.email)?.let {
+        throw DuplicatedUserException("already exist user: ${registerRequest.email}")
+        }
+        userRepository.findByUsername(registerRequest.username)?.let {
+        throw DuplicatedUserException("already exist user: ${registerRequest.username}")
+        }
         val user = BugsUser(
             email = registerRequest.email,
             username = registerRequest.username,
