@@ -1,5 +1,6 @@
 package com.bugs.tokkaiiii.userservice.repository
 
+import com.bugs.tokkaiiii.userservice.exception.UserNotFoundException
 import org.assertj.core.api.Assertions
 import org.jooq.generated.tables.pojos.BugsUser
 import org.junit.jupiter.api.Assertions.*
@@ -43,4 +44,26 @@ class UserRepositoryImplTest {
         Assertions.assertThat(userId).isNotNull
         Assertions.assertThat(userId1).isNotNull
     }
+
+    @Test
+    @Transactional
+    @DisplayName("유저 단건 조회")
+    fun 유저_단건_조회(){
+        // given
+        val user = BugsUser()
+        user.username = "test_username"
+        user.email = "test_email"
+        user.password = "test_password"
+        user.createdAt = LocalDateTime.now()
+        user.updatedAt = LocalDateTime.now()
+        val userId = userRepository.saveUser(user)?: throw UserNotFoundException("User Not Found")
+
+        // when
+        val findUser = userRepository.findById(userId)?: throw UserNotFoundException("User Not Found")
+
+        // then
+        Assertions.assertThat(findUser).isNotNull
+        Assertions.assertThat(findUser.username).isEqualTo("test_username")
+    }
+
 }

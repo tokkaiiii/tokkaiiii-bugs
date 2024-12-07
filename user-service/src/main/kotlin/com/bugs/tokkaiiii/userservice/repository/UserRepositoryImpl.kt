@@ -26,4 +26,9 @@ class UserRepositoryImpl(
         ).values(user.email, user.username, user.password, user.createdAt,user.updatedAt)
             .returningResult(BUGS_USER.ID).fetchOneInto(Long::class.java)
     }
+
+    override fun findById(id: Long): BugsUser? {
+        return bugsUserDao.findById(id)
+    }
+
 }
