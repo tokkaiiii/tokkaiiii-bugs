@@ -28,8 +28,8 @@ import org.jooq.TableOptions
 import org.jooq.UniqueKey
 import org.jooq.generated.JPublic
 import org.jooq.generated.keys.BUGS_USER_EMAIL_KEY
-import org.jooq.generated.keys.BUGS_USER_PASSWORD_KEY
 import org.jooq.generated.keys.BUGS_USER_PKEY
+import org.jooq.generated.keys.BUGS_USER_USERNAME_KEY
 import org.jooq.generated.tables.records.BugsUserRecord
 import org.jooq.impl.AutoConverter
 import org.jooq.impl.DSL
@@ -125,7 +125,7 @@ open class JBugsUser(
     override fun getSchema(): Schema? = if (aliased()) null else JPublic.PUBLIC
     override fun getIdentity(): Identity<BugsUserRecord, Long?> = super.getIdentity() as Identity<BugsUserRecord, Long?>
     override fun getPrimaryKey(): UniqueKey<BugsUserRecord> = BUGS_USER_PKEY
-    override fun getUniqueKeys(): List<UniqueKey<BugsUserRecord>> = listOf(BUGS_USER_EMAIL_KEY, BUGS_USER_PASSWORD_KEY)
+    override fun getUniqueKeys(): List<UniqueKey<BugsUserRecord>> = listOf(BUGS_USER_EMAIL_KEY, BUGS_USER_USERNAME_KEY)
     override fun `as`(alias: String): JBugsUser = JBugsUser(DSL.name(alias), this)
     override fun `as`(alias: Name): JBugsUser = JBugsUser(alias, this)
     override fun `as`(alias: Table<*>): JBugsUser = JBugsUser(alias.qualifiedName, this)
