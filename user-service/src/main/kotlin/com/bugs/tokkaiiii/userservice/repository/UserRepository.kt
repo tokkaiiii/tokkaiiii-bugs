@@ -10,4 +10,6 @@ interface UserRepository {
 
     fun findByEmail(email: String): BugsUser?
 
+    fun findByUsername(username: String): BugsUser?
+
 }

@@ -35,4 +35,8 @@ class UserRepositoryImpl(
         return bugsUserDao.fetchOneByJEmail(email)
     }
 
+    override fun findByUsername(username: String): BugsUser? {
+        return bugsUserDao.fetchOneByJUsername(username)
+    }
+
 }
