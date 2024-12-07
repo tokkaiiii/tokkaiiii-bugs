@@ -3,3 +3,12 @@ spring:
     name: user-service
   datasource:
     driver-class-name: org.postgresql.Driver
+    username: bugs
+    password: bugs
+    url: jdbc:postgresql://localhost:15432/tokkaiiii-bugs
+logging:
+  level:
+    org:
+      jooq:
+        tools:
+          LoggerListener: debug
