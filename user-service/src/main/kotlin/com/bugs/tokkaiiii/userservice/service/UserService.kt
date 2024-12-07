@@ -1,9 +1,9 @@
 package com.bugs.tokkaiiii.userservice.service
 
-import org.jooq.generated.tables.pojos.BugsUser
+import com.bugs.tokkaiiii.userservice.dto.request.RegisterRequest
 
 interface UserService {
 
-    fun saveUser(user: BugsUser): Long?
+    fun saveUser(registerRequest: RegisterRequest): Long?
 
 }
